@@ -37,11 +37,11 @@ module Celluloid
       end
 
       def idle?
-        to_a.select{ |t| t[:celluloid_meta] and t[:celluloid_meta][:state] == :running }.empty?
+        to_a.none?{ |t| t[:celluloid_meta] and t[:celluloid_meta][:state] == :running }
       end
 
       def busy?
-        to_a.select{ |t| t[:celluloid_meta] and t[:celluloid_meta][:state] == :running }.any?
+        to_a.any?{ |t| t[:celluloid_meta] and t[:celluloid_meta][:state] == :running }
       end
 
       private
